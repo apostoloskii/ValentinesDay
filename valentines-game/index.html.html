@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara, одговори ми 💕</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(180deg, #ff4d6d, #ff9a9e);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    padding: 40px 25px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+}
+
+h1 {
+    color: #e63946;
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+p {
+    color: #444;
+    font-size: 1.1em;
+    line-height: 1.4em;
+}
+
+.buttons {
+    margin-top: 35px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 14px 36px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+#yes {
+    background: #ff4d6d;
+    color: white;
+}
+
+#no {
+    background: #cccccc;
+    color: #333;
+    position: absolute;
+    left: 50%;
+    top: 70px;
+    transform: translateX(-50%);
+}
+
+.heart {
+    position: absolute;
+    font-size: 24px;
+    animation: float 4s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh) rotate(0deg);}
+    to { transform: translateY(-10vh) rotate(360deg);}
+}
+
+@media (max-width: 400px) {
+    h1 { font-size: 1.6em; }
+    p { font-size: 1em; }
+    button { font-size: 1em; padding: 12px 28px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="main">
+    <h1>💖 Sara, ќе бидеш ли мојот Валентајн? 💖</h1>
+    <p>
+        Сакав да те прашам на посебен начин ❤️<br>
+        бидејќи ти си посебна за мене.
+    </p>
+
+    <div class="buttons">
+        <button id="yes" onclick="yesClick()">ДА 💘</button>
+        <button id="no" onmouseover="runAway()">НЕ 😅</button>
+    </div>
+</div>
+
+<script>
+/* НЕ копчето бега */
+function runAway() {
+    const no = document.getElementById("no");
+    const box = document.querySelector(".buttons");
+
+    const maxX = box.offsetWidth - no.offsetWidth;
+    const maxY = box.offsetHeight - no.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    no.style.left = x + "px";
+    no.style.top = y + "px";
+}
+
+/* ДА копчето – финале + анимирани срца + романтична порака */
+function yesClick() {
+    const main = document.getElementById("main");
+    main.innerHTML = `
+        <h1>💞 Знаев! 💞</h1>
+        <p style="font-size:1.2em;">
+            Sara, ти благодарам што кажа ДА ❤️<br><br>
+            Овој Валентајн е наш 😍
+        </p>
+    `;
+    hearts();
+}
+
+/* Анимирани срца */
+function hearts() {
+    for (let i = 0; i < 40; i++) {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "❤️";
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        h.style.fontSize = (Math.random() * 16 + 16) + "px";
+        document.body.appendChild(h);
+    }
+}
+</script>
+
+</body>
+</html>
